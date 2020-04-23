@@ -14,4 +14,17 @@ scores = [0, 0];
 roundScore = 0;
 activePLayer = 0;
 
-dice = 
+document.querySelector('#current-' + activePLayer).textContent = dice;
+
+document.querySelector('.dice').style.display = 'none';
+
+document.querySelector('.btn-roll').addEventListener('click', function() {
+
+    // 1. Random Number
+    dice = Math.floor(Math.random() * 6 + 1);
+
+    // 2. Display the result
+    var diceDom = document.querySelector('.dice');
+    diceDom.style.display = 'block';
+    diceDom.src = 'dice-' + dice + '.png';
+});
