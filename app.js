@@ -8,20 +8,12 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
+
 var scores, roundScore, activePLayer, dice;
 
-scores = [0, 0];
-roundScore = 0;
-activePLayer = 0;
+init();
 
-
-
-document.querySelector('.dice').style.display = 'none';
-
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+document.querySelector(".btn-new").addEventListener('click', init);  // calling the new game function
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
 
@@ -58,7 +50,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     // Check if player won the game
     if(scores[activePLayer] >= 20) {
         document.querySelector('#name-' + activePLayer).textContent = 'Winner!';
-        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.dice').style.display = 'block';
         document.querySelector('.player-' + activePLayer + '-panel').classList.add('winner');
         document.querySelector('.player-' + activePLayer + '-panel').classList.remove('active');
     }
@@ -70,6 +62,28 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
     
 });
+
+function init() {
+    scores = [0, 0];
+	roundScore = 0;
+    activePLayer = 0;
+    
+    document.querySelector(".dice").style.display = "none";
+	document.getElementById("score-0").textContent = "0";
+	document.getElementById("score-1").textContent = "0";
+	document.getElementById("current-0").textContent = "0";
+    document.getElementById("current-1").textContent = "0";
+    document.getElementById("name-0").textContent = "Player 1";
+    document.getElementById("name-1").textContent = "Player 2";
+
+    document.querySelector(".player-0-panel").classList.remove("winner");
+	document.querySelector(".player-0-panel").classList.remove("active");
+        
+    document.querySelector(".player-1-panel").classList.remove("winner");
+    document.querySelector(".player-1-panel").classList.remove("active");
+    
+    document.querySelector(".player-0-panel").classList.add("active");
+}
 
 function nextPlayer() {
 
