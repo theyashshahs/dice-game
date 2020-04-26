@@ -56,9 +56,11 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
     
     // Check if player won the game
-    if(scores[activePLayer] >= 100) {
+    if(scores[activePLayer] >= 20) {
         document.querySelector('#name-' + activePLayer).textContent = 'Winner!';
         document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePLayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePLayer + '-panel').classList.remove('active');
     }
 
     else {
@@ -70,7 +72,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 });
 
 function nextPlayer() {
-    
+
     activePLayer === 0 ? (activePLayer = 1) : (activePLayer = 0);
 	roundScore = 0;
 
