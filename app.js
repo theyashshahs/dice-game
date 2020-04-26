@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePLayer, dice;
+var scores, roundScore, activePLayer, dice, isGamePlaying;
 
 init();
 
@@ -17,30 +17,33 @@ document.querySelector(".btn-new").addEventListener('click', init);  // calling 
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
 
-    // 1. Random Number
-    dice = Math.floor(Math.random() * 6 + 1);
+    if(isGamePlaying) {
+            // 1. Random Number
+        dice = Math.floor(Math.random() * 6 + 1);
 
-    // 2. Display the result
-    var diceDom = document.querySelector('.dice');
-    diceDom.style.display = 'block';
-    diceDom.src = 'dice-' + dice + '.png';
+        // 2. Display the result
+        var diceDom = document.querySelector('.dice');
+        diceDom.style.display = 'block';
+        diceDom.src = 'dice-' + dice + '.png';
 
-    //3. Update the scores
-    if(dice !== 1)
-    {   
-        roundScore += dice;
-        document.querySelector("#current-" + activePLayer).textContent = roundScore;
-    }
+        //3. Update the scores
+        if(dice !== 1)
+        {   
+            roundScore += dice;
+            document.querySelector("#current-" + activePLayer).textContent = roundScore;
+        }
 
-    else{
-        // next player
-        nextPlayer();
+        else{
+            // next player
+            nextPlayer();
+        }
     }
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
 
-    // Add current score to the global score score
+    if(isGamePlaying) {
+// Add current score to the global score score
     scores[activePLayer] += roundScore;  
 
     // Update the UI
@@ -53,6 +56,8 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('.dice').style.display = 'block';
         document.querySelector('.player-' + activePLayer + '-panel').classList.add('winner');
         document.querySelector('.player-' + activePLayer + '-panel').classList.remove('active');
+
+        isGamePlaying = false;
     }
 
     else {
@@ -60,14 +65,15 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         nextPlayer();
 	}
 
-    
+    }
 });
 
 function init() {
     scores = [0, 0];
 	roundScore = 0;
     activePLayer = 0;
-    
+    isGamePlaying = true;
+
     document.querySelector(".dice").style.display = "none";
 	document.getElementById("score-0").textContent = "0";
 	document.getElementById("score-1").textContent = "0";
