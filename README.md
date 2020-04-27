@@ -8,6 +8,7 @@
 2. In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score.
 3. If the player rolls a 1 on the dice, all his ROUND score gets lost :wink: After that, it's the next player's turn
 4. The player can choose to 'Hold', which means that his ROUND score gets added to his GLOBAL score. After that, it's the next player's turn
-5. The first player to reach 50 points on GLOBAL score wins the game :raised_hands: 
+5. the players can set the winning score according to their liking like 20, 50, 100. However if no input is given then the default winning score will be 50.
+6. The first player to reach the winning score on GLOBAL score wins the game :raised_hands: 
 
 ### Enjoy the game :smile:
